@@ -27,7 +27,6 @@ router.get('/', function(req, res) {
   });
 });
 
-
 router.get('/:id', function(req, res) {
   Session.findById(req.params.id, function (err, session) {
     if (err) return res.status(500).send("There was a problem to finding a session.");
