@@ -27,10 +27,18 @@ router.get('/', function(req, res) {
   });
 });
 
+
+router.get('/:id', function(req, res) {
+  Session.findById(req.params.id, function (err, session) {
+    if (err) return res.status(500).send("There was a problem to finding a session.");
+    res.status(200).send(session);
+  });
+});
+
 router.delete('/:id', function (req, res) {
   console.log(req.params.id)
   Session.findByIdAndRemove(req.params.id, function(err, session) {
-    if (err) return res.status(500).send("There was a problem to delete the session.");
+    if (err) return res.status(500).send("There was a problem to delete a session.");
     res.status(200).send(session);
   });
 });
