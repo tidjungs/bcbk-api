@@ -19,14 +19,19 @@ router.post('/login',
   })
 );
 
-router.post('/register', function(req, res) {
-  User.create({
-    username: req.body.username,
-    password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null)
-  }, function(err, user) {
-    if (err) res.status(500).send("error register");
-    res.status(200).send("success");
-  })
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/user/login');
 });
+
+// router.post('/register', function(req, res) {
+//   User.create({
+//     username: req.body.username,
+//     password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8), null)
+//   }, function(err, user) {
+//     if (err) res.status(500).send("error register");
+//     res.status(200).send("success");
+//   })
+// });
 
 module.exports = router;
