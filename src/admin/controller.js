@@ -1,9 +1,10 @@
-var express = require('express');
+const express = require('express');
 const passport = require('passport');
-var Session = require('../session/model');
-var router = express.Router();
+const isLoggedIn = require('../middleware').isLoggedIn;
+const Session = require('../session/model');
+const router = express.Router();
 
-router.get('/', function(req, res) {
+router.get('/', isLoggedIn, function(req, res) {
   Session.find({}, function (err, sessions) {
     res.render('index', { sessions });
   });
