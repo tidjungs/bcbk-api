@@ -4,38 +4,25 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+
+/**
+ * Environment variables
+ */
 require('dotenv').config();
-const User = require('./user/model');
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false);
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false);
-      }
-      return done(null, user);
-    });
-  }
-));
+/**
+ * Passport Config
+ */
+require('./passport.js');
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  console.log('id:' + id)
-  User.findById(id, function (err, user) {
-    if (err) { return done(err); }
-    done(null, user);
-  });
-});
+/**
+ * Controllers
+ */
+const AdminController = require('./admin/controller');
+const SesionController = require('./session/controller');
+const UserController = require('./user/controller');
 
 /**
  * Connect to MongoDB
@@ -57,14 +44,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-/**
- * Controllers
- */
-const AdminController = require('./admin/controller');
-const SesionController = require('./session/controller');
-const UserController = require('./user/controller');
-
 
 /**
  * Connect with Controllers
