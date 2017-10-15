@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');  
 
 var SessionSchema = new mongoose.Schema({  
-  name: { type: String, required: true },
-  speaker: { type: [String], required: true },
-  start: { type: Date, required: true },
-  end: { type: Date, required: true },
-  room: { type: String, required: true }
+  name: String,
+  speaker: [String],
+  start: Date,
+  end: Date,
+  room: String
 });
 
 mongoose.model('Session', SessionSchema);

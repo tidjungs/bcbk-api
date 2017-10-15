@@ -7,7 +7,6 @@ const User = require('./model');
 const router = express.Router();
 
 router.get('/login', function(req, res) {
-  console.log(req.isAuthenticated())
   if (req.isAuthenticated()) { return res.redirect('/') }
   res.render('login');
 });
@@ -16,6 +15,7 @@ router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/user/login',
+    failureFlash: true    
   })
 );
 

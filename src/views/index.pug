@@ -2,12 +2,13 @@ html
   include header.pug
   body
     .container
-      div(class="row mt-4")
-        h1= 'SESSIONS'
-      div(class="row mb-4")
-        button(class=" btn btn-primary")= 'ADD SESSION'
+      div(class="d-flex justify-content-between")
+        h5= 'bcbk session'
+        a(href="/user/logout")
+          button(class="btn btn-primary")= 'Logout'
+      br
       .row
-        table.table
+        table(class="table table-responsive")
           thead
             th= '#'
             th= 'name'
@@ -15,6 +16,7 @@ html
             th= 'start'
             th= 'end'
             th= 'room'
+            th= 'edit'
           tbody
             each session, index in sessions
               tr
@@ -24,8 +26,6 @@ html
                 td #{moment(session.start).format('hh:mm')}
                 td #{moment(session.end).format('hh:mm')}
                 td= session.room
-
-    //- form(action="")
-    //-   .form-group
-    //-     label(for="")= 'sessions name'
-    //-     input(type="text")
+                td
+                  a(href="/sessions/" + session.id)
+                    button(class="btn btn-secondary")= 'edit'
