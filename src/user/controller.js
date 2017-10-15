@@ -1,6 +1,5 @@
 const express = require('express');
 const LocalStrategy = require('passport-local').Strategy;
-const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const passport = require('passport');
 const User = require('./model');
