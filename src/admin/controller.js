@@ -1,13 +1,11 @@
 var express = require('express');
-var bodyParser = require('body-parser');
+const passport = require('passport');
 var Session = require('../session/model');
 var router = express.Router();
 
-router.use(bodyParser.urlencoded({ extended: true }));
-
 router.get('/', function(req, res) {
   Session.find({}, function (err, sessions) {
-    res.render('index', { sessions })    
+    res.render('index', { sessions });
   });
 });
 

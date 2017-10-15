@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var moment = require('moment');
+var isAuthenticated = require('../auth');
 var Session = require('./model');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.post('/', function(req, res) {
+router.post('/', isAuthenticated, function(req, res) {
   Session.create({
     name: req.body.name,
     speaker: req.body.speaker.split(','),

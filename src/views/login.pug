@@ -1,0 +1,14 @@
+html
+  include header.pug
+  body
+    div(class="d-flex justify-content-center")
+      form(action="" method="post")
+        h2= "Login admin"
+        h3= messages
+        .form-group
+          label(for="inputUsername")= 'username'
+          input(type="text" class="form-control" id="inputUsername" placeholder="username" name="username" required)
+        .form-group
+          label(for="inputPassword")= 'password'
+          input(type="password" class="form-control" id="inputPassword" placeholder="password" name="password" requireds)
+        button(class="btn btn-primary")= 'Login'
