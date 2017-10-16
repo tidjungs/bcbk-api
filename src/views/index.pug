@@ -20,11 +20,11 @@ html
           tbody
             each session, index in sessions
               tr
-                th= index
+                th= index+1
                 td= session.name
                 td= session.speaker
-                td #{moment(session.start).format('hh:mm')}
-                td #{moment(session.end).format('hh:mm')}
+                td #{moment(session.start).zone(0).format('HH:mm')}
+                td #{moment(session.end).zone(0).format('HH:mm')}
                 td= session.room
                 td
                   a(href="/sessions/" + session.id)
