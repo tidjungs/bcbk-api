@@ -23,9 +23,9 @@ html
                 th= index+1
                 td= session.name
                 td= session.speaker
-                td #{moment(session.start).zone(0).format('HH:mm')}
-                td #{moment(session.end).zone(0).format('HH:mm')}
+                td #{moment(session.start).utc().format('HH:mm')}
+                td #{moment(session.end).utc().format('HH:mm')}
                 td= session.room
                 td
-                  a(href="/sessions/" + session.id)
+                  a(href="/" + session.id)
                     button(class="btn btn-secondary")= 'edit'

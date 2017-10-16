@@ -7,14 +7,17 @@ const router = express.Router();
 
 router.get('/login', function(req, res) {
   if (req.isAuthenticated()) { return res.redirect('/') }
-  res.render('login');
+  // const errMessage = req.flash('error');
+  res.render('login', {
+    //  errMessage: errMessage.length > 0 ? errMessage[0] : null
+  });
 });
 
 router.post('/login',   
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/user/login',
-    failureFlash: true    
+    failureFlash: true
   })
 );
 

@@ -12,4 +12,10 @@ router.get('/', isLoggedIn, function(req, res) {
   });
 });
 
+router.get('/:id', isLoggedIn, function(req, res) {
+  Session.findById(req.params.id, function (err, session) {
+    res.render('edit', { session })
+  });
+});
+
 module.exports = router;
