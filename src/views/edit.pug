@@ -5,10 +5,10 @@ html
       form(action="" method="post")
         .form-group
           label= 'name'
-          input(type="text" class="form-control" value= session.name)
+          input(type="text" class="form-control" name="name" value= session.name)
         .form-group
           label= 'speakers'
-          input(type="text" class="form-control" value= session.speaker.join())
+          input(type="text" class="form-control" name="speaker" value= session.speaker.join())
         .form-group
           span(class="badge badge-pill badge-dark mr-2") #{'start: ' + moment(session.start).utc().format('HH:mm')}
           span(class="badge badge-pill badge-dark mr-2") #{'end: '   + moment(session.end).utc().format('HH:mm')}

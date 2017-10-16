@@ -18,4 +18,16 @@ router.get('/:id', isLoggedIn, function(req, res) {
   });
 });
 
+router.post('/:id', isLoggedIn, function(req, res) {
+  Session.findById(req.params.id, function(err, session) {
+    if (err) return res.send(500);
+    session.name = req.body.name;
+    session.speaker = req.body.speaker.split(',');
+    session.save(function(err) {
+      if (err) return res.send(500);
+      res.redirect('/admin');
+    });
+  })
+});
+
 module.exports = router;

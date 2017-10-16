@@ -27,5 +27,5 @@ html
                 td #{moment(session.end).utc().format('HH:mm')}
                 td= session.room
                 td
-                  a(href="/" + session.id)
+                  a(href="/admin/" + session.id)
                     button(class="btn btn-secondary")= 'edit'

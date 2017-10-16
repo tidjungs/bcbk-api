@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 var Session = require('./model');
+const isLoggedIn = require('../middleware').isLoggedIn;
 
-router.post('/', function(req, res) {
+router.post('/', isLoggedIn, function(req, res) {
   Session.create({
     name: req.body.name,
     speaker: req.body.speaker.split(','),
@@ -31,7 +32,7 @@ router.get('/:id', function(req, res) {
   });
 });
 
-router.delete('/:id', function (req, res) {
+router.delete('/:id', isLoggedIn, function (req, res) {
   console.log(req.params.id)
   Session.findByIdAndRemove(req.params.id, function(err, session) {
     if (err) return res.status(500).send("There was a problem to delete a session.");

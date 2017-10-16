@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 /**
  * Connect with Controllers
  */
-app.use('/', AdminController);
+app.use('/admin', AdminController);
 app.use('/sessions', SesionController);
 app.use('/user', UserController)
 
