@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var moment = require('moment');
-var Session = require('./model');
+const express = require('express');
+const router = express.Router();
+const moment = require('moment');
+const _ = require('lodash');
+const Session = require('./model');
 const isLoggedIn = require('../middleware').isLoggedIn;
 
 router.post('/', isLoggedIn, function(req, res) {
@@ -20,6 +21,7 @@ router.post('/', isLoggedIn, function(req, res) {
 
 router.get('/', function(req, res) {
   Session.find({}, function (err, sessions) {
+    sessions = _.sortBy(sessions, ['start', 'room']);    
     if (err) return res.status(500).send("There was a problem to finding the sessions.");
     res.status(200).send(sessions);
   });
