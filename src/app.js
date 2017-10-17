@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
+const cors = require('cors');
 
 /**
  * Environment variables
@@ -36,6 +37,7 @@ const app = express();
 app.set('view engine', 'pug');
 app.set("views", path.join(__dirname, "views"));
 app.locals.moment = require('moment');
+app.use(cors());
 app.use(cookieParser());
 app.use(flash());
 app.use(session({
