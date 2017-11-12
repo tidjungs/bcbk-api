@@ -5,7 +5,7 @@ const _ = require('lodash');
 const Session = require('./model');
 const isLoggedIn = require('../middleware').isLoggedIn;
 
-router.post('/', function(req, res) {
+router.post('/', isLoggedIn, function(req, res) {
   Session.create({
     name: req.body.name,
     speaker: req.body.speaker.split(','),

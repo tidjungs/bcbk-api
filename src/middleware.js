@@ -1,6 +1,5 @@
 module.exports = {
   isLoggedIn: function(req, res, next) {
-    next();
     if (req.isAuthenticated()) {
       return next();
     }
