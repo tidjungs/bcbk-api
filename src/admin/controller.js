@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/', isLoggedIn, function(req, res) {
   Session.find({}, function (err, sessions) {
-    sessions = _.sortBy(sessions, ['start', 'room']);
+    sessions = _.sortBy(sessions, ['room', 'start']);
     res.render('index', { sessions });
   });
 });
